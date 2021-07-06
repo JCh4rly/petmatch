@@ -10,10 +10,10 @@ the goals of mating or adopting.
 
 The user posts detailed info including the type of pet (dog, cat), its breed, sex and age, 
 with the possibility of posting a picture. These posts are listed on the main page so other users of the app are able to select the ones that are
-of interest. 
+of interest. Filtering options should be available to help users find a perfect match for their pets.
 
 The app should notify a user when someone hits the "Like" button on the post and so 
-begin a contact, for example via an itegrated chat room.
+begin a contact, for example via an itegrated chat room. Future releases may include social networks integrations.
 
 ## What I got so far
 The app is currently under development. So far there are only three screens implemented:
