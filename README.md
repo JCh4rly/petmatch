@@ -15,5 +15,11 @@ of interest.
 The app should notify a user when someone hits the "Like" button on the post and so 
 begin a contact, for example via an itegrated chat room.
 
+## What I got so far
+The app is currently under development. So far there are only three screens implemented:
+- Posts: Listing of published posts
+- Details: Displays pet-related info including a single picture
+- New post: A simple form for creating a new post
+
 ## Technical info
-Petmatch is an Expo based app
+Petmatch is an Expo based app connected to a firebase backend
