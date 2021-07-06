@@ -14,3 +14,6 @@ of interest.
 
 The app should notify a user when someone hits the "Like" button on the post and so 
 begin a contact, for example via an itegrated chat room.
+
+## Technical info
+Petmatch is an Expo based app
