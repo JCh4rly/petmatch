@@ -22,4 +22,4 @@ The app is currently under development. So far there are only three screens impl
 - New post: A simple form for creating a new post
 
 ## Technical info
-Petmatch is an Expo based app connected to a firebase backend
+Petmatch is an Expo based app connected to a firebase backend, with ReactNavigation as a routing engine. The base components library is provided by Nativebase.
