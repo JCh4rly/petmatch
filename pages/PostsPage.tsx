@@ -1,12 +1,34 @@
 import * as React from 'react';
 import { FlatList, Box, Row, Column, Pressable, Text, Icon, IconButton, Button, Modal, Radio } from 'native-base';
-import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import  { useState, useEffect } from 'react';
 import { firebase } from '../config/firebaseConfig';
 import Post from '../models/post';
+import { RepositoryFactory } from '../services/repos/factory';
+
+export type Filter = {
+  type: string,
+  pet: {
+    type: string,
+    sex: string,
+    breed: string,
+    age: number,
+  },
+}
+
+const defaultFilter: Filter = {
+  type: '',
+  pet: {
+    type: '',
+    sex: '',
+    breed: '',
+    age: 0,
+  },
+};
 
 const PostsPage = ({ navigation }) => {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [filter, setFilter] = useState<Filter>(defaultFilter);
   const entityRef = firebase.default.firestore().collection('posts');
   const onItemPressed = (item: Post) => {
     navigation.navigate('DetailsPage', { item });
@@ -23,17 +45,12 @@ const PostsPage = ({ navigation }) => {
   };
 
   useEffect(() => {
-    const loadItems = () => {
-      entityRef.onSnapshot((query) => {
-        const posts : Post[] = [];
-        query.forEach((doc) => {
-          const post : Post = doc.data() as Post;
+    const loadItems = async () => {
+      const factory = new RepositoryFactory();
+      const repo = factory.getPostRepository();
+      const posts = await repo.getAll(filter);
 
-          post.id = doc.id;
-          posts.push(post);
-        });
-        setPosts(posts);
-      });
+      setPosts(posts);
     };
 
     loadItems();
