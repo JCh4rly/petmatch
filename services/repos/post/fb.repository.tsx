@@ -10,7 +10,6 @@ export default class FbPostRepository implements IPostRepository {
     this.entityRef = firebase.default.firestore().collection('posts');
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get(_id: string): Post {
     throw new Error('Method not implemented.');
   }
