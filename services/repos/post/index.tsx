@@ -1,5 +1,4 @@
-import Post from "../../../models/post";
-import { Filter } from "../../../pages/PostsPage";
+import { Post, Filter } from "../../../models/post";
 
 // A common interface for CRUD operations on Posts.
 export interface IPostRepository {

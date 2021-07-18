@@ -1,10 +1,18 @@
-import Pet from "./pet";
+import Pet from './pet';
 
-type Post = {
+export type Post = {
   id: string,
   type: string,
   pet: Pet,
   description: string,
 }
 
-export default Post;
+export type Filter = {
+  type: string,
+  pet: {
+    type: string,
+    sex: string,
+    breed: string,
+    age: number,
+  },
+}

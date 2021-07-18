@@ -3,18 +3,8 @@ import { FlatList, Box, Row, Column, Pressable, Text, Icon, IconButton, Button, 
 import { FontAwesome5 } from '@expo/vector-icons';
 import  { useState, useEffect } from 'react';
 import { firebase } from '../config/firebaseConfig';
-import Post from '../models/post';
+import { Post, Filter } from '../models/post';
 import { RepositoryFactory } from '../services/repos/factory';
-
-export type Filter = {
-  type: string,
-  pet: {
-    type: string,
-    sex: string,
-    breed: string,
-    age: number,
-  },
-}
 
 const defaultFilter: Filter = {
   type: '',
