@@ -1,9 +1,36 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import * as React from 'react';
-import { useState } from 'react';
-import { Modal, Radio, Button } from 'native-base';
+import { Modal, Button, Box } from 'native-base';
+import { Controller, useForm } from 'react-hook-form';
+import { Filter } from '../models/filter';
+import Dropdown from './dropdown';
+import { petTypeOptions, typeOptions } from '../models/common/options';
+import { PetSex } from '../models/pet';
 
-const Filterbox = ({ open, onClose, onFilter, filterState }) => {
-  const [filter, setFilter] = useState(filterState);
+type FilterProps = {
+  open: boolean,
+  filter: Filter,
+  onClose: () => void,
+  onFilter: (filter: Filter) => void,
+}
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+const Filterbox = ({
+  open, onClose, onFilter, filter,
+}: FilterProps) => {
+  const { control, handleSubmit } = useForm({ defaultValues: filter });
+  const onSubmit = (data: Filter) => {
+    onFilter(data);
+    onClose();
+  };
+
+  const petSexOptions = [{
+    value: '', label: 'Any sex',
+  }, {
+    value: PetSex.male, label: 'Male',
+  }, {
+    value: PetSex.female, label: 'Female',
+  }];
 
   return (
     <Modal isOpen={open} onClose={onClose} mt={12}>
@@ -11,36 +38,53 @@ const Filterbox = ({ open, onClose, onFilter, filterState }) => {
         <Modal.CloseButton />
         <Modal.Header>Filter posts</Modal.Header>
         <Modal.Body>
-          <Radio.Group
-            name="commonFilter"
-            value={filter.option}
-            onChange={(nextValue) => {
-              setFilter({ ...filter, commonFilter: nextValue })
-            }}
-          >
-            <Radio value="all" my={1}>
-              All
-            </Radio>
-            <Radio value="my_posts" my={1}>
-              My posts
-            </Radio>
-            <Radio value="my_fav_posts" my={1}>
-              My favourite posts
-            </Radio>
-            <Radio value="dog" my={1}>
-              Dogs
-            </Radio>
-            <Radio value="cat" my={1}>
-              Cats
-            </Radio>
-          </Radio.Group>
+          <Box>
+            {/* type */}
+            <Controller
+              name="type"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Dropdown
+                  options={typeOptions}
+                  value={value}
+                  onSelect={(selection: string) => onChange(selection)}
+                />
+              )}
+            />
+
+            {/* pet type */}
+            <Controller
+              name="petType"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Dropdown
+                  options={petTypeOptions}
+                  value={value}
+                  onSelect={(selection: string) => onChange(selection)}
+                />
+              )}
+            />
+
+            {/* pet type */}
+            <Controller
+              name="petSex"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Dropdown
+                  options={petSexOptions}
+                  value={value}
+                  onSelect={(selection: string) => onChange(selection)}
+                />
+              )}
+            />
+          </Box>
         </Modal.Body>
         <Modal.Footer>
           <Button.Group variant="ghost" space={2}>
             <Button
-              onPress={onFilter}
+              onPress={handleSubmit(onSubmit)}
             >
-              FILTER
+              APPLY FILTER
             </Button>
           </Button.Group>
         </Modal.Footer>

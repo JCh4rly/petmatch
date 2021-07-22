@@ -1,5 +1,5 @@
-type Pet = {
-  type: string,
+export type Pet = {
+  type: PetTypes,
   name: string,
   race: string,
   sex: string,
@@ -8,4 +8,12 @@ type Pet = {
   childPath: string,
 }
 
-export default Pet;
+export enum PetTypes {
+  cat = 'cat',
+  dog = 'dog'
+}
+
+export enum PetSex {
+  male = 'male',
+  female = 'female'
+}

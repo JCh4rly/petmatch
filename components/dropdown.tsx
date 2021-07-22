@@ -9,7 +9,7 @@ export type DropdownOption = {
 export type DropdownProps = {
   options: DropdownOption[],
   value: string,
-  onSelect: any
+  onSelect?: any
 };
 
 const Dropdown = ({ options, value, onSelect }: DropdownProps) => (
@@ -20,7 +20,7 @@ const Dropdown = ({ options, value, onSelect }: DropdownProps) => (
     placeholder="Select a type"
     onValueChange={onSelect}
     _selectedItem={{
-      bg: "teal.600",
+      bg: 'teal.600',
       endIcon: <CheckIcon size={5} />,
     }}
     mt={1}

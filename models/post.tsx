@@ -1,18 +1,13 @@
-import Pet from './pet';
+import { Pet } from './pet';
 
 export type Post = {
   id: string,
-  type: string,
+  type: PostTypes,
   pet: Pet,
   description: string,
 }
 
-export type Filter = {
-  type: string,
-  pet: {
-    type: string,
-    sex: string,
-    breed: string,
-    age: number,
-  },
+export enum PostTypes {
+  mating = 'mating',
+  adoption = 'adoption',
 }
