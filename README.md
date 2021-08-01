@@ -17,7 +17,7 @@ begin a contact, for example via an itegrated chat room. Future releases may inc
 
 ## What I got so far
 The app is currently under development. So far there are only three screens implemented:
-- Posts: Listing of published posts
+- Posts: Listing of published posts using a Card layout to display content
 - Details: Displays pet-related info including a single picture
 - New post: A simple form for creating a new post
 
