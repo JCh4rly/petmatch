@@ -29,18 +29,8 @@ const PetCard = ({ item }: Props) => {
       shadow={2}
       rounded="md"
     >
-      { /* Post image */ }
-      {url !== '' && (
-        <Image
-          source={{ uri: url }}
-          alt="image base"
-          resizeMode="cover"
-          height={150}
-        />
-      )}
-
       { /* Post header */ }
-      <Row mt={3} alignItems="center">
+      <Row mb={2} px={1} alignItems="center">
         <Icon as={<FontAwesome5 name="heart" />} size="sm" />
         <Text
           ml={1}
@@ -53,6 +43,16 @@ const PetCard = ({ item }: Props) => {
         <Icon as={<FontAwesome5 name="thumbs-up" />} color="blue.400" size="xs" />
         <Text fontSize="xs" ml={1}>{ likes || 0 }</Text>
       </Row>
+
+      { /* Post image */ }
+      {url !== '' && (
+        <Image
+          source={{ uri: url }}
+          alt="image base"
+          resizeMode="cover"
+          height={150}
+        />
+      )}
 
       { /* Description */ }
       <Box
