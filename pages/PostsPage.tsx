@@ -1,20 +1,26 @@
 import * as React from 'react';
 import {
-  FlatList, Box, Row, Column, Pressable, Text, Icon, IconButton, Button,
+  FlatList, Box, Column, Button,
 } from 'native-base';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { StyleSheet } from 'react-native';
 import { useState, useEffect } from 'react';
-import { Post, PostTypes } from '../models/post';
+import { Post } from '../models/post';
 import { RepositoryFactory } from '../services/repos/factory';
 import { Filter } from '../models/filter';
-import { PetTypes } from '../models/pet';
 import Filterbox from '../components/filterbox';
+import PetCard from '../components/pet.card';
 
 const defaultFilter: Filter = {
   type: '',
   petType: '',
   petSex: '',
 };
+
+const styles = StyleSheet.create({
+  listContainer: {
+    paddingBottom: 2,
+  },
+});
 
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -47,7 +53,7 @@ const PostsPage = ({ navigation }) => {
 
   return (
     <>
-      <Column py={0.5}>
+      <Column py={0.5} flex={1}>
         <Box>
           <Button.Group
             variant="solid"
@@ -66,30 +72,11 @@ const PostsPage = ({ navigation }) => {
             </Button>
           </Button.Group>
         </Box>
-        <Box>
+        <Box style={styles.listContainer}>
           <FlatList
             data={posts}
             renderItem={({ item }) => (
-              <Row
-                w="100%"
-                justifyContent="space-between"
-                alignItems="center"
-                key={item.id}
-              >
-                <Pressable
-                  onPress={() => onItemPressed(item)}
-                  flex={1}
-                  _pressed={{ backgroundColor: '#ccc' }}
-                >
-                  <Text mx={2}>
-                    {getTitle(item)}
-                  </Text>
-                </Pressable>
-                <IconButton
-                  colorScheme="emerald"
-                  icon={<Icon as={FontAwesome5} name="heart" size={5} />}
-                />
-              </Row>
+              <PetCard item={item} />
             )}
             keyExtractor={(item) => item.id}
           />

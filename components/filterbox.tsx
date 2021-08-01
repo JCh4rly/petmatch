@@ -42,6 +42,7 @@ const Filterbox = ({
             {/* type */}
             <Controller
               name="type"
+              key="type"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <Dropdown
@@ -55,6 +56,7 @@ const Filterbox = ({
             {/* pet type */}
             <Controller
               name="petType"
+              key="petType"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <Dropdown
@@ -68,6 +70,7 @@ const Filterbox = ({
             {/* pet type */}
             <Controller
               name="petSex"
+              key="petSex"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <Dropdown
